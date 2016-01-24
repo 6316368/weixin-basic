@@ -7,6 +7,14 @@ package org.lihai.weixin.model;
  */
 public class WeixinFinalValue {
 	/***
+	 * 微信公众号开发中使用的凭证ID
+	 */
+	public final static  String  AppID="wx1d46e52ad38456d3";
+	/***
+	 * 微信公众号开发中使用密钥
+	 */
+	public final static  String  AppSecret="211502e8c6710f2179a2a50d0f68860f ";
+	/***
 	 * 获取ACCESS_TOKEN的url地址
 	 */
 	public final static String ACCESS_TOKEN_URL = "https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=APPID&secret=APPSECRET";
