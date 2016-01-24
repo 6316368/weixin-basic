@@ -1,14 +1,22 @@
 package org.lihai.weixin.web.controller;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.Arrays;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.http.HttpRequest;
+import org.dom4j.DocumentException;
 import org.lihai.weixin.kit.SecurityKit;
+import org.lihai.weixin.msg.MessageKit;
+import org.lihai.weixin.web.servlet.WeixinContext;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
 public class WeixinInitController {
@@ -36,5 +44,24 @@ public class WeixinInitController {
 		if(signature.equals(sha1Msg)) {
 			resp.getWriter().println(echostr);
 		}
+	}
+	
+	@RequestMapping(value="/wget",method=RequestMethod.POST)
+	public  void getInfo(HttpServletRequest req, HttpServletResponse  resp) throws IOException, DocumentException{
+		req.setCharacterEncoding("utf-8");
+		resp.setCharacterEncoding("utf-8");
+		Map<String, String> regMsg2Map = MessageKit.regMsg2Map(req);
+		System.out.println(regMsg2Map);
+	}
+	
+	@RequestMapping("/at")
+	public  void  testaccessToken(HttpServletResponse  resp){
+		try {
+			resp.getWriter().print(WeixinContext.getAccessToken());
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 	}
 }

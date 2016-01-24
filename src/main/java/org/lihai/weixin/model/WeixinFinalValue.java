@@ -9,11 +9,11 @@ public class WeixinFinalValue {
 	/***
 	 * 微信公众号开发中使用的凭证ID
 	 */
-	public final static  String  AppID="wx1d46e52ad38456d3";
+	public final static  String  AppID="wxceff12edbe4c26bb";
 	/***
 	 * 微信公众号开发中使用密钥
 	 */
-	public final static  String  AppSecret="211502e8c6710f2179a2a50d0f68860f ";
+	public final static  String  AppSecret="3e60f31e9912ec63429e1df5212acccf";
 	/***
 	 * 获取ACCESS_TOKEN的url地址
 	 */
