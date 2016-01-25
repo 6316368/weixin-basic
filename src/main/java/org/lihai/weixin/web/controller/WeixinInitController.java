@@ -1,15 +1,12 @@
 package org.lihai.weixin.web.controller;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.util.Arrays;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.http.HttpRequest;
 import org.dom4j.DocumentException;
 import org.lihai.weixin.kit.SecurityKit;
 import org.lihai.weixin.msg.MessageKit;
@@ -48,10 +45,13 @@ public class WeixinInitController {
 	
 	@RequestMapping(value="/wget",method=RequestMethod.POST)
 	public  void getInfo(HttpServletRequest req, HttpServletResponse  resp) throws IOException, DocumentException{
-		req.setCharacterEncoding("utf-8");
-		resp.setCharacterEncoding("utf-8");
+		req.setCharacterEncoding("UTF-8");
+		resp.setCharacterEncoding("UTF-8");
 		Map<String, String> regMsg2Map = MessageKit.regMsg2Map(req);
-		System.out.println(regMsg2Map);
+		String respCon=MessageKit.handlerMsg(regMsg2Map);
+		resp.setContentType("application/xml;charset=UTF-8");
+		resp.getWriter().write(respCon);
+		//System.out.println(respCon);
 	}
 	
 	@RequestMapping("/at")

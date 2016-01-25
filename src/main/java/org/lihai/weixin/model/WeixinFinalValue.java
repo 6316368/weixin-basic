@@ -43,19 +43,24 @@ public class WeixinFinalValue {
 	 */
 	public final static String MSG_VIDEO_TYPE = "video";
 	/***
-	 * 发送消息的类型:段视频消息
+	 * 发送消息的类型:短视频消息
 	 */
 	public final static String MSG_SHORTVIDEO_TYPE = "shortvideo";
 	/***
-	 * 微信中的定位
+	 * 微信中的地理位置
 	 */
 	public final static String MSG_LOCATION_TYPE = "location";
 	/***
 	 * 微信中的事件
 	 */
 	public final static String MSG_EVENT_TYPE = "event";
-	
+	/***
+	 * 新增临时素材的url使用post请求
+	 */
 	public final static String POST_MEDIA="https://api.weixin.qq.com/cgi-bin/media/upload?access_token=ACCESS_TOKEN&type=TYPE";
+	/***
+	 * 的一个media的地址
+	 */
 	public final static String GET_MEDIA="https://api.weixin.qq.com/cgi-bin/media/get?access_token=ACCESS_TOKEN&media_id=MEDIA_ID";
 	
 	public final static String SEND_TEMPLATE_MSG = "https://api.weixin.qq.com/cgi-bin/message/template/send?access_token=ACCESS_TOKEN";

@@ -1,12 +1,15 @@
 package com.lihai.test;
 
 import java.awt.Menu;
+import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.commons.io.FileUtils;
 import org.apache.http.HttpEntity;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.methods.CloseableHttpResponse;
@@ -21,6 +24,7 @@ import org.junit.Test;
 import org.lihai.weixin.Quartz.RefreshAccessTokenTask;
 import org.lihai.weixin.json.Access_token;
 import org.lihai.weixin.json.JsonUtil;
+import org.lihai.weixin.kit.MediaKit;
 import org.lihai.weixin.model.WeixinFinalValue;
 import org.lihai.weixin.model.WeixinMenu;
 
@@ -113,5 +117,18 @@ public class HttpRequestUnits {
 			System.out.println(EntityUtils.toString(response.getEntity()));
 		}
 		
+	}
+	
+	
+	@Test
+	public  void  testPostMedia(){
+		String mid = MediaKit.postMedia("H:\\pictures\\桌面.jpg", "image");
+	    System.out.println(mid);
+	}
+	
+	@Test
+	public  void  testGetMedia() throws IOException{
+		MediaKit.getMedia("NgALyWw5jt1ZOb6VK7Vb0urofExsPEcM5TN8m95ancfYMg49h-R2DAmuQvko1gji",new File("d://sss.jpg"));
+	  
 	}
 }
