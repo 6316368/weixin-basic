@@ -18,7 +18,10 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class RefreshAccessTokenTask {
-	public static String  at="mJCneVG5tw4aL8yUHXoT5yI5LVm9D5Y56-tqQiOnzrMV33Y1CB8DfeYeod8iio90-cU6YTOC69Qe-O-aLHkDNiNs4JhBYzUzrIQ0Kc1zFxwYZLaADAHIU";
+	public static String  at="oBnOGxYGRRWFO0cIvjXiOtC1ssekHQTcLUSKTIFIza5g3Dqa3kZE60nt-Yk9Dbm6cD06BIH4R30RPYSG3dm2hbY4oedenh7kk70nrrIaMGuCJYeWeEbDQVSzbyTi9BtAPTOdAHAJNI";
+	static{
+		WeixinContext.setAccessToken(at);
+	}
 	public void refreshToken() {
 			HttpGet get = null;
 			CloseableHttpResponse resp = null;

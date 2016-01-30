@@ -24,9 +24,12 @@ import org.junit.Test;
 import org.lihai.weixin.Quartz.RefreshAccessTokenTask;
 import org.lihai.weixin.json.Access_token;
 import org.lihai.weixin.json.JsonUtil;
+import org.lihai.weixin.json.ModleMsgData;
+import org.lihai.weixin.json.TempleMsg;
 import org.lihai.weixin.kit.MediaKit;
 import org.lihai.weixin.model.WeixinFinalValue;
 import org.lihai.weixin.model.WeixinMenu;
+import org.lihai.weixin.msg.MessageKit;
 
 import com.fasterxml.jackson.annotation.JsonUnwrapped;
 
@@ -130,5 +133,19 @@ public class HttpRequestUnits {
 	public  void  testGetMedia() throws IOException{
 		MediaKit.getMedia("NgALyWw5jt1ZOb6VK7Vb0urofExsPEcM5TN8m95ancfYMg49h-R2DAmuQvko1gji",new File("d://sss.jpg"));
 	  
+	}
+	
+	@Test
+	public  void  testTempleMsg() throws IOException{
+	  TempleMsg  msg=new TempleMsg();
+	  msg.setTouser("oKAtBuN6KGfNIdxdB6y3rqHtdCSY");
+	  msg.setTemplate_id("1JGofSp4NzVesA2cVuucxnbQoHGK2_e0KIh2tMZh7OE");
+	  msg.setTopcolor("#ff0000");
+	  msg.setUrl("http://www.konghao.org");
+	  Map<String, Object> map=new HashMap<String, Object>();
+	  map.put("num", new ModleMsgData("123", "#00ff00"));
+	  msg.setData(map);
+	  //System.out.println(JsonUtil.getInstance().obj2json(msg));
+	  MessageKit.postTemlateMsg(msg);
 	}
 }

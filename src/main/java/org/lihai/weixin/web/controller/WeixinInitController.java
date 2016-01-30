@@ -51,7 +51,7 @@ public class WeixinInitController {
 		String respCon=MessageKit.handlerMsg(regMsg2Map);
 		resp.setContentType("application/xml;charset=UTF-8");
 		resp.getWriter().write(respCon);
-		//System.out.println(respCon);
+		System.out.println(respCon);
 	}
 	
 	@RequestMapping("/at")

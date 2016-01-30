@@ -1,6 +1,7 @@
 package org.lihai.weixin.msg;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.StringWriter;
@@ -12,13 +13,32 @@ import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.http.HttpEntity;
+import org.apache.http.ParseException;
+import org.apache.http.client.ClientProtocolException;
+import org.apache.http.client.methods.CloseableHttpResponse;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.entity.ContentType;
+import org.apache.http.entity.StringEntity;
+import org.apache.http.entity.mime.MultipartEntityBuilder;
+import org.apache.http.entity.mime.content.FileBody;
+import org.apache.http.impl.client.CloseableHttpClient;
+import org.apache.http.impl.client.HttpClients;
+import org.apache.http.util.EntityUtils;
 import org.dom4j.Document;
 import org.dom4j.DocumentException;
 import org.dom4j.DocumentHelper;
 import org.dom4j.Element;
 import org.dom4j.io.XMLWriter;
+import org.lihai.weixin.Quartz.RefreshAccessTokenTask;
+import org.lihai.weixin.json.JsonUtil;
+import org.lihai.weixin.json.TempleMsg;
+import org.lihai.weixin.json.WeixinMedia;
 import org.lihai.weixin.kit.MediaKit;
+import org.lihai.weixin.kit.WeixinKit;
 import org.lihai.weixin.model.WeixinFinalValue;
+
+import com.fasterxml.jackson.annotation.JsonUnwrapped;
 @SuppressWarnings("unchecked")
 public class MessageKit {
 	
@@ -146,9 +166,25 @@ public class MessageKit {
 			root.addElement(key).addText(map.get(key));
 		}
 		StringWriter sw=new StringWriter();
-		XMLWriter xw=new XMLWriter();
+		XMLWriter xw=new XMLWriter(sw);
 		xw.setEscapeText(false);
 		xw.write(d);
+		//d.write(sw);
 		return sw.toString();
 	} 
+	
+	/**function(使用post请求发送模板消息)
+	 * @param  @param tempMsg
+	 * @param  @return         
+	 * @return String 
+	 * @throws                
+	 * @author lh 
+	 * @Date   2016年1月25日
+	*/
+	public  static String postTemlateMsg(TempleMsg tempMsg){ 
+		String url=WeixinFinalValue.SEND_TEMPLATE_MSG;
+		url=url.replace("ACCESS_TOKEN", RefreshAccessTokenTask.at);
+		String data = JsonUtil.getInstance().obj2json(tempMsg);
+		return WeixinKit.postString(url, data, "application/json");
+	}
 }
