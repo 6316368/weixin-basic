@@ -25,9 +25,9 @@ public class TestJson {
 	public static void main(String[] args) throws ClientProtocolException,
 			IOException {
 		//查询所有支持缴费的省份
-		//HydropowercoaluUtils.getAllProvince();
+		HydropowercoaluUtils.getAllProvince();
 	    //查询所有的缴费的城市
-		//HydropowercoaluUtils.getAllCity();
+		HydropowercoaluUtils.getAllCity();
 		
 	}
 
